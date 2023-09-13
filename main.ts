@@ -4,7 +4,13 @@ input.onPinPressed(TouchPin.P0, function () {
         rt = (input.runningTime() - st_time) / 1000
         basic.clearScreen()
         basic.showNumber(rt)
-        mode = 999
+        kaisu += 1
+        if (kaisu >= n) {
+            basic.showString("END")
+            mode = 999
+        } else {
+            mode = 1
+        }
     }
 })
 function taiki () {
@@ -14,19 +20,23 @@ function taiki () {
     basic.showIcon(IconNames.Heart)
 }
 input.onButtonPressed(Button.A, function () {
-    basic.showIcon(IconNames.Square)
     mode = 1
+    kaisu = 0
 })
 function junbi () {
+    basic.showIcon(IconNames.Square)
     basic.pause(1000)
     basic.clearScreen()
     mode = 2
 }
+let kaisu = 0
 let st_time = 0
 let rt = 0
+let n = 0
 let mode = 0
 basic.showString("RT Pro")
 mode = 999
+n = 5
 basic.forever(function () {
     if (mode != 999) {
         if (mode == 1) {
