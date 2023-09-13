@@ -24,7 +24,7 @@ function taiki () {
 function print_data () {
     serial.writeLine("---reaction time data---")
     for (let カウンター = 0; カウンター <= n - 1; カウンター++) {
-        serial.writeNumber(カウンター)
+        serial.writeNumber(カウンター + 1)
         serial.writeString("--")
         serial.writeLine("" + (rt_array[カウンター]))
     }
