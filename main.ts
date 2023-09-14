@@ -6,6 +6,10 @@ input.onPinPressed(TouchPin.P0, function () {
         basic.showNumber(rt)
         rt_array.push(rt)
         kaisu += 1
+        datalogger.log(
+        datalogger.createCV("no", kaisu),
+        datalogger.createCV("RT", rt)
+        )
         if (kaisu >= n) {
             basic.showString("END")
             mode = 999
@@ -29,15 +33,20 @@ function print_data () {
         serial.writeLine("" + (rt_array[カウンター]))
     }
     serial.writeLine("------------------------")
-    serial.writeValue("最大小", custom.calculateMin(rt_array))
-    serial.writeValue("最大値", custom.calculateMax(rt_array))
-    serial.writeValue("平均値", custom.calculateMean(rt_array))
-    serial.writeValue("標準偏差", custom.calculateStandardDeviation(rt_array))
+    serial.writeValue("min", custom.calculateMin(rt_array))
+    serial.writeValue("max", custom.calculateMax(rt_array))
+    serial.writeValue("mean", custom.calculateMean(rt_array))
+    serial.writeValue("std", custom.calculateStandardDeviation(rt_array))
 }
 input.onButtonPressed(Button.A, function () {
     mode = 1
     kaisu = 0
     rt_array = []
+    datalogger.deleteLog(datalogger.DeleteType.Full)
+    datalogger.setColumnTitles(
+    "no",
+    "RT"
+    )
 })
 function junbi () {
     basic.showIcon(IconNames.Square)
@@ -54,6 +63,7 @@ let mode = 0
 basic.showString("RT Pro")
 mode = 999
 n = 5
+datalogger.mirrorToSerial(false)
 basic.forever(function () {
     if (mode != 999) {
         if (mode == 1) {
