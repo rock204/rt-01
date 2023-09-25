@@ -26,12 +26,13 @@ function junbi () {
     pins.digitalWritePin(DigitalPin.P0, 0)
     mode = 2
 }
-let rt = 0
 let st_time = 0
+let rt = 0
 let mode = 0
 basic.showString("RT Pro")
 mode = 999
 pins.setPull(DigitalPin.P0, PinPullMode.PullDown)
+rt = pins.digitalReadPin(DigitalPin.P1)
 basic.forever(function () {
     if (mode != 999) {
         if (mode == 1) {
