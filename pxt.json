@@ -1,5 +1,5 @@
 {
-    "name": "反応時間01",
+    "name": "反応時間GPIO01",
     "description": "",
     "dependencies": {
         "core": "*",
