@@ -19,7 +19,7 @@ input.onButtonPressed(Button.A, function () {
 })
 function junbi () {
     basic.pause(1000)
-    basic.clearScreen()
+    pins.digitalWritePin(DigitalPin.P0, 0)
     mode = 2
 }
 let st_time = 0
@@ -27,6 +27,7 @@ let rt = 0
 let mode = 0
 basic.showString("RT Pro")
 mode = 999
+pins.setPull(DigitalPin.P0, PinPullMode.PullDown)
 basic.forever(function () {
     if (mode != 999) {
         if (mode == 1) {
